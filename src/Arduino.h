@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-#include "EEPROM.h"
+#include <EEPROM.h>
 
 #undef AB_DEVKIT
 #define ARDUBOY_10 YES

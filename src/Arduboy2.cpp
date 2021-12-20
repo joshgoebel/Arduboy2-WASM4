@@ -5,6 +5,7 @@
  */
 
 #include "Arduboy2.h"
+#include "wasm4.h"
 
 //========================================
 //========== class Arduboy2Base ==========
@@ -883,9 +884,31 @@ void Arduboy2Base::drawCompressed(int16_t sx, int16_t sy, const uint8_t *bitmap,
   }
 }
 
+void pixel (int x, int y) {
+    // The byte index into the framebuffer that contains (x, y)
+    int idx = (y*160 + x) >> 2;
+
+    // Calculate the bits within the byte that corresponds to our position
+    int shift = (x & 0b11) << 1;
+    int mask = 0b11 << shift;
+
+    // Use the first DRAW_COLOR as the pixel color
+    int color = *DRAW_COLORS & 0b11;
+
+    // Write to the framebuffer
+    FRAMEBUFFER[idx] = (color << shift) | (FRAMEBUFFER[idx] & ~mask);
+}
+
 void Arduboy2Base::display()
 {
-  paintScreen(sBuffer);
+  // paintScreen(sBuffer);
+  for (int y =0; y < 64; y ++ ) {
+    for (int x = 0; x<128; x++) {
+      byte data = getPixel(x,y);
+      if (data)
+        pixel(x+16,y+48);
+    }
+  }
 }
 
 void Arduboy2Base::display(bool clear)

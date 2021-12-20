@@ -58,16 +58,3 @@ void ltoa(long n, char s[], int base)
      s[i] = '\0';
      reverse(s);
 }
-
-// struct EEPROMClass{
-//     uint8_t read( int idx )              { return 0; };
-//     void write( int idx, uint8_t val )   { };
-//     void update( int idx, uint8_t val )  { };
-//     template< typename T > const T &put( int idx, const T &t ){
-
-//     }
-//      template< typename T > T &get( int idx, T &t ){
-//      }
-// // };
-
-// EEPROMClass EEPROM __attribute__ ((unused));
