@@ -110,13 +110,18 @@
 #define PIN_SPEAKER_1 5  /**< The pin number of the first lead of the speaker */
 #define PIN_SPEAKER_2 13 /**< The pin number of the second lead of the speaker */
 
+// location of mouse buttons which we shouldn't be able to do harm
+// #define UNUSED_ADDY ((uint8_t*)0x1E)
+
+
 #define SPEAKER_1_PORT 0
-#define SPEAKER_1_DDR 0
+#define SPEAKER_1_DDR _MMIO_BYTE(0x1E)
 #define SPEAKER_1_BIT 0
 
 #define SPEAKER_2_PORT 0
-#define SPEAKER_2_DDR 0
+#define SPEAKER_2_DDR _MMIO_BYTE(0x1E)
 #define SPEAKER_2_BIT 0
+
 // -----------------------
 
 // ----- DevKit pins -----

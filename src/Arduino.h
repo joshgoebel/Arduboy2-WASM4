@@ -9,6 +9,10 @@
 
 #define PROGMEM
 
+#define _MMIO_BYTE(mem_addr) (*(volatile uint8_t *)(mem_addr))
+#define _MMIO_WORD(mem_addr) (*(volatile uint16_t *)(mem_addr))
+#define _MMIO_DWORD(mem_addr) (*(volatile uint32_t *)(mem_addr))
+
 #define bitRead(value, bit) (((value) >> (bit)) & 0x01)
 #define bitSet(value, bit) ((value) |= (1UL << (bit)))
 #define bitClear(value, bit) ((value) &= ~(1UL << (bit)))

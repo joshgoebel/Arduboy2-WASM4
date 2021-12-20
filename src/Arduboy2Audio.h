@@ -80,12 +80,9 @@ class Arduboy2Audio
    *
    * \details
    * The speaker is initialized based on the current mute setting saved in
-   * system EEPROM. This function is called by `Arduboy2Base::begin()` so it
-   * isn't normally required to call it within a sketch. However, if
-   * `Arduboy2Core::boot()` is used instead of `Arduboy2Base::begin()` and the
-   * sketch includes sound, then this function should be called after `boot()`.
-   */
-  void static begin();
+   * system EEPROM.
+  */
+  static void begin();
 
   /** \brief
    * Turn sound on.
@@ -97,7 +94,7 @@ class Arduboy2Audio
    *
    * \see off() toggle() saveOnOff()
    */
-  void static on();
+  static void on();
 
   /** \brief
    * Turn sound off (mute).
@@ -109,7 +106,7 @@ class Arduboy2Audio
    *
    * \see on() toggle() saveOnOff()
    */
-  void static off();
+  static void off();
 
   /** \brief
    * Toggle the sound on/off state.
@@ -122,7 +119,7 @@ class Arduboy2Audio
    *
    * \see on() off() saveOnOff()
    */
-  void static toggle();
+  static void toggle();
 
   /** \brief
    * Save the current sound state in EEPROM.
@@ -138,7 +135,7 @@ class Arduboy2Audio
    *
    * \see on() off() toggle()
    */
-  void static saveOnOff();
+  static void saveOnOff();
 
   /** \brief
    * Get the current sound state.
@@ -152,10 +149,10 @@ class Arduboy2Audio
    *
    * \see on() off() toggle()
    */
-  bool static enabled();
+  static bool enabled();
 
  protected:
-  bool static audio_enabled;
+  static bool audio_enabled;
 };
 
 #endif
