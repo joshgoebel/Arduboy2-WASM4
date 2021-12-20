@@ -227,7 +227,7 @@ void Arduboy2Core::digitalWriteRGB(uint8_t color, uint8_t val)
 
 uint8_t Arduboy2Core::buttonsState()
 {
-  uint8_t buttons;
+  uint8_t buttons = 0;
 
   if (*GAMEPAD1 & BUTTON_1) buttons |= A_BUTTON;
   if (*GAMEPAD1 & BUTTON_2) buttons |= B_BUTTON;
