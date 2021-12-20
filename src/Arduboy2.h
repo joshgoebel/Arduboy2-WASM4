@@ -212,6 +212,9 @@ class Arduboy2Base : public Arduboy2Core
  public:
   Arduboy2Base();
 
+ static constexpr uint16_t eepromAudioOnOff = 2;
+
+
   /** \brief
    * An object created to provide audio control functions within this class.
    *

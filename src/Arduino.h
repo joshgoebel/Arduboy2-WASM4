@@ -7,11 +7,23 @@
 #include <string.h>
 #include "EEPROM.h"
 
+#undef AB_DEVKIT
+#define ARDUBOY_10 YES
+
+
 #define PROGMEM
 
 #define _MMIO_BYTE(mem_addr) (*(volatile uint8_t *)(mem_addr))
 #define _MMIO_WORD(mem_addr) (*(volatile uint16_t *)(mem_addr))
 #define _MMIO_DWORD(mem_addr) (*(volatile uint32_t *)(mem_addr))
+
+// point all our registers to the mouse pointer
+#define PORTA _MMIO_BYTE(0x1E)
+#define PORTB _MMIO_BYTE(0x1E)
+#define PORTC _MMIO_BYTE(0x1E)
+#define PORTD _MMIO_BYTE(0x1E)
+#define DDRB _MMIO_BYTE(0x1E)
+#define DDRC _MMIO_BYTE(0x1E)
 
 #define bitRead(value, bit) (((value) >> (bit)) & 0x01)
 #define bitSet(value, bit) ((value) |= (1UL << (bit)))
