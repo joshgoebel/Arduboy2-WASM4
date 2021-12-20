@@ -30,6 +30,7 @@
 #define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
 #define bitWrite(value, bit, bitvalue) ((bitvalue) ? bitSet(value, bit) : bitClear(value, bit))
 
+unsigned long millis();
 void randomSeed(int a);
 int min(int a, int b);
 int max(int a, int b);

@@ -7,6 +7,13 @@ int random(int max) {return 0; }
 int random(int min, int max) { return 0; }
 int abs(int n) { return n < 0 ? -n : n; }
 
+unsigned long frameTicks = 0;
+
+// return applox number of ms since boot
+unsigned long millis() {
+    return frameTicks * 17;
+}
+
 void reverse(char s[])
  {
      int i, j;
