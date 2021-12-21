@@ -7,29 +7,16 @@
 #include <type_traits>
 #endif
 
-static uint8_t* eeprom = NULL;
+extern uint8_t* eepromPtr;
 
 struct EEPROMClass{
-    uint8_t read( int idx ) {
-        return *(eeprom + idx);
-    }
-    void write( int idx, uint8_t val ) {
-        update(idx, val);
-    }
-    void update( int idx, uint8_t val ) {
-        uint8_t old_val = read(idx);
-        if (old_val == val) return;
 
-        *(eeprom + idx) = val;
-        saveAll();
-    }
-    void boot() {
-        eeprom = (uint8_t *)malloc(1024);
-        diskr(eeprom, 1024);
-    }
-    void saveAll() {
-        diskw(eeprom,1024);
-    }
+
+    uint8_t read( int idx );
+    void write( int idx, uint8_t val );
+    void update( int idx, uint8_t val );
+    void boot();
+    void saveAll();
     template< typename T > const T &put( int idx, const T &t ) {
         #if defined(__has_include) && __has_include(<type_traits>)
         static_assert(std::is_trivially_copyable<T>::value, "You can not use this type with EEPROM.get"); // the code below only makes sense if you can "memcpy" T
@@ -38,7 +25,7 @@ struct EEPROMClass{
         int count = sizeof(T);
         uint8_t *ptr = (uint8_t*) &t;
         for (int i = 0; i < count; i++) {
-            *(eeprom + idx + i) = *ptr++;
+            *(eepromPtr + idx + i) = *ptr++;
         }
         saveAll();
 
@@ -52,13 +39,13 @@ struct EEPROMClass{
         int count = sizeof(T);
         uint8_t *ptr = (uint8_t*) &t;
         for (int i = 0; i < count; i++) {
-            *ptr++ = *(eeprom + idx + i);
+            *ptr++ = *(eepromPtr + idx + i);
         }
 
         return t;
     }
 };
 
-static EEPROMClass EEPROM __attribute__ ((unused));
+static EEPROMClass EEPROM;
 
 #endif

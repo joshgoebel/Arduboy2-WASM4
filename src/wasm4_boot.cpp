@@ -1,4 +1,4 @@
-#include "arduino.h"
+#include <arduino.h>
 #include "abw4lib.h"
 #include "Arduboy2.h"
 
@@ -32,7 +32,7 @@ void arduboyLogo() {
   if (y > 24) y = 24;
 
   PALETTE[0] = 0x000000;
-  PALETTE[1] = 0xffff99;
+  PALETTE[1] = 0xffffff;
   *DRAW_COLORS = 1;
 
   SpritesB::drawSelfMasked(20, y, Arduboy2::arduboy_logo_sprite, 0);

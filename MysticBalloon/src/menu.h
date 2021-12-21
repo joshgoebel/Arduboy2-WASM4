@@ -115,11 +115,20 @@ void stateMenuSoundfx()
   }
   if (arduboy.justPressed(UP_BUTTON)) arduboy.audio.off();
   sprites.drawPlusMask(54, 18 + 9 * arduboy.audio.enabled(), selector_plus_mask, 0);
+  if (arduboy.justPressed(A_BUTTON)) {
+    tracef("just pressed A");
+  }
+  if (arduboy.justPressed(B_BUTTON)) {
+    tracef("just pressed B");
+  }
   if (arduboy.justPressed(A_BUTTON | B_BUTTON))
   {
-    arduboy.audio.saveOnOff();
+    tracef("just pressed both");
     gameState = STATE_MENU_MAIN;
+    arduboy.audio.saveOnOff();
     sound.tone(425, 20);
+    tracef("game state is %d", gameState);
+    tracef("reach end");
   }
 }
 

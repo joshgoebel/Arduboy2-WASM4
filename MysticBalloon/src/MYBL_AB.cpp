@@ -15,6 +15,7 @@
 #define GAME_ID 34
 
 #include <Arduino.h>
+#include <EEPROM.h>
 #include "wasm4.h"
 #include <abw4lib.h>
 #include "globals.h"
@@ -46,10 +47,12 @@ const FunctionPointer PROGMEM  mainGameLoop[] = {
 void start()
 {
   // arduboy.boot();                                           // begin with the boot logo en setting up the device to work
-  // arduboy.audio.begin();
+
   // arduboy.bootLogoSpritesSelfMasked();
   // arduboy.setFrameRate(60);                                 // set the frame rate of the game at 60 fps
+
   EEPROM.boot();
+  arduboy.audio.begin();
   loadSetEEPROM();
 }
 
