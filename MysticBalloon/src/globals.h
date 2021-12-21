@@ -73,7 +73,7 @@ struct HighRect
 
 Arduboy2Base arduboy;
 SpritesB sprites;
-ArduboyTones sound;
+ArduboyTones sound(arduboy.audio.enabled);
 
 byte gameState = STATE_MENU_INTRO;   // start the game with the TEAM a.r.g. logo
 byte menuSelection = STATE_MENU_PLAY; // PLAY menu item is pre-selected

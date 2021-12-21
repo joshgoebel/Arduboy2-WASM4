@@ -160,7 +160,8 @@ class ArduboyTones
    * be called from the timer interrupt service routine, at the start of each
    * tone, so it should be as fast as possible.
    */
-  ArduboyTones();
+  // ArduboyTones();
+  ArduboyTones(bool (*outEn)());
 
   /** \brief
    * Play a single tone.

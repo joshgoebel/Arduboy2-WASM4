@@ -4,12 +4,13 @@
 static bool (*outputEnabled)();
 
 
-ArduboyTones::ArduboyTones()
+ArduboyTones::ArduboyTones(boolean (*outEn)())
 {
-//   outputEnabled = outEn;
-
+  outputEnabled = outEn;
 }
 
 void ArduboyTones::tone(uint16_t freq, uint16_t dur) {
-    ::tone(freq, dur, 0,0);
+    if (outputEnabled) {
+        ::tone(freq, dur / 16, 100,TONE_PULSE1 | TONE_MODE1);
+    }
 }
