@@ -14,6 +14,7 @@ DEBUG = 0
 
 # Compilation flags
 CFLAGS = -W -Wall -Wextra -MMD -MP -fno-exceptions -I../src/
+CFLAGS += -Wno-unused-parameter -Wno-unused-value -Wno-unused-parameter -Wno-unused-variable
 # ifeq ($(DEBUG), 1)
 # CFLAGS += -DDEBUG -O0 -g
 # else

@@ -244,6 +244,7 @@ unsigned long Arduboy2Core::generateRandomSeed()
   unsigned long seed;
 
   // TODO: reimplement in software?
+  return 0;
 }
 
 // delay in ms with 16 bit duration

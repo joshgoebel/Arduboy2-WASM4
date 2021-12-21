@@ -63,7 +63,8 @@ void update() {
   if (gameState < STATE_GAME_NEXT_LEVEL && arduboy.everyXFrames(10))sparkleFrames = (++sparkleFrames) % 5;
   arduboy.pollButtons();
   arduboy.clear();
-  ((FunctionPointer) pgm_read_word (&mainGameLoop[gameState]))();
+  mainGameLoop[gameState]();
+
 
   PALETTE[0] = 0x000000;
   PALETTE[1] = 0xffff99;

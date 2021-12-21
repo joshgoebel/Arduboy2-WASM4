@@ -1,5 +1,5 @@
 #include "wasm4.h"
-#include "eeprom.h"
+#include "EEPROM.h"
 #include <stdlib.h>
 
 #if defined(__has_include) && __has_include(<type_traits>)
@@ -28,10 +28,8 @@ void EEPROMClass::update( int idx, uint8_t val ) {
 
     *(eepromPtr + idx) = val;
     saveAll();
-    tracef("update done");
 }
 void EEPROMClass::boot() {
-    tracef("EEPROM boot");
     eepromPtr = (uint8_t *)malloc(1024);
     diskr(eepromPtr, 1024);
 }
