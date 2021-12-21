@@ -76,6 +76,6 @@ void update() {
   PALETTE[1] = 0xffff99;
   *DRAW_COLORS = 1;
 
-  memset(FRAMEBUFFER,0xFF,3200);
+  // memset(FRAMEBUFFER,0xFF,3200);
   arduboy.display();
 }
