@@ -60,8 +60,6 @@ void start()
 
 
 void update() {
-
-  // arduboy.bootLogoSpritesSelfMasked();
   if (stillBooting()) {
     return;
   }

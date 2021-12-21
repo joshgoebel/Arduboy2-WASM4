@@ -24,12 +24,7 @@ struct EEPROMClass{
         saveAll();
     }
     void boot() {
-        uint8_t* ptr;
-        tracef("ptr is %d", (int)ptr);
-        // tracef("heap_base is %d", __heap_base);
-        ptr = (uint8_t *)malloc(1024);
-        tracef("ptr is %d", (int)ptr);
-        eeprom = ptr;
+        eeprom = (uint8_t *)malloc(1024);
         diskr(eeprom, 1024);
     }
     void saveAll() {
