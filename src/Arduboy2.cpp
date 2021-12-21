@@ -33,6 +33,8 @@ extern unsigned long frameTicks;
 // Aruduboy2::begin()
 void Arduboy2Base::begin()
 {
+  return;
+
   beginDoFirst();
 
   bootLogo();

@@ -34,16 +34,16 @@ void stateMenuPlayNew()
 
 void stateMenuPlayContinue()
 {
-  tracef("before read");
+  // tracef("before read");
   level = EEPROM.read(OFFSET_LEVEL);
-  tracef("level %d", level);
+  // tracef("level %d", level);
   totalCoins = EEPROM.read(OFFSET_COINS);
-  tracef("totalCoins %d", totalCoins);
+  // tracef("totalCoins %d", totalCoins);
   coinsCollected = 0;
   balloonsLeft = 0;
   //scorePlayer = 0;
   EEPROM.get(OFFSET_SCORE, scorePlayer);
-  tracef("scorePlayer %d", scorePlayer);
+  // tracef("scorePlayer %d", scorePlayer);
   globalCounter = 0;
   kid.balloons = 3;
   gameState = STATE_GAME_NEXT_LEVEL;
@@ -96,11 +96,11 @@ void stateGameNextLevel()
   totalCoins = 152;
 
   // Update EEPROM
-  tracef("writing level %d", level);
+  // tracef("writing level %d", level);
   EEPROM.put(OFFSET_LEVEL, level);
-  tracef("writing coins %d", totalCoins);
+  // tracef("writing coins %d", totalCoins);
   EEPROM.put(OFFSET_COINS, totalCoins);
-  tracef("writing score %d", scorePlayer);
+  // tracef("writing score %d", scorePlayer);
   EEPROM.put(OFFSET_SCORE, scorePlayer);
 
   //if (nextLevelIsVisible)

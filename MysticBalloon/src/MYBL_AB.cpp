@@ -46,21 +46,13 @@ const FunctionPointer PROGMEM  mainGameLoop[] = {
 
 void start()
 {
-  // arduboy.boot();                                           // begin with the boot logo en setting up the device to work
-
-  // arduboy.bootLogoSpritesSelfMasked();
-  // arduboy.setFrameRate(60);                                 // set the frame rate of the game at 60 fps
+  arduboy.boot();
+  arduboy.begin();
 
   EEPROM.boot();
   arduboy.audio.begin();
   loadSetEEPROM();
 }
-
-
-
-
-
-
 
 void update() {
   if (stillBooting()) {
