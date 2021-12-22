@@ -9,6 +9,11 @@ At a very high level:
 - adds some scaffolding for `<Arduino.h>` and friends to make porting most things easier
 - 1024 buffer is still needs for the screen since all the native functions are still drawing to that buffer, only in `display` is that translated to the native WASM-4 display
 
+### Porting checklist
+
+- You can't use tight loops waiting for input, since WASM-4 is event driven and `update` is called at 60 FPS
+- You're stuck with 60 FPS (or an even multiple, 30, 15, etc.)
+
 ### Example
 
 <img src="https://aws1.discourse-cdn.com/standard14/uploads/arduboy/original/3X/6/1/6187b9adbd70ef1658b8162b59b07a8c2b3d3e4d.png" width="600" />
@@ -24,3 +29,5 @@ To play it online:
 - [ ] random does nothing
 - [ ] randomSeed does nothing
 - [ ] does not support `Print` or `print` yet
+- [ ] Move palette setup and such things into the library
+- [ ] Is there some way to hide `EEPROM.boot()`?
