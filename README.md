@@ -22,6 +22,12 @@ To play it online:
 
 <https://ajoshguy.itch.io/mystic-balloons-w4>
 
+### Requirements
+
+- A working C/C++ toolchain on your local machine for compiling
+- Working Make tooks, since you'll need `make` to build
+- The WASM-4 `w4` console utility for running or bundling your cartridges
+
 ### TODO
 
 - [ ] Restore sound in `Arduboy2Beep.cpp`
@@ -31,3 +37,69 @@ To play it online:
 - [ ] does not support `Print` or `print` yet
 - [ ] Move palette setup and such things into the library
 - [ ] Is there some way to hide `EEPROM.boot()`?
+
+
+### Porting Mystic Balloons
+
+Pretty much all the work was in the main sketch file:
+
+Before:
+
+```c++
+void setup()
+{
+  arduboy.boot();
+  arduboy.audio.begin();
+  arduboy.bootLogoSpritesSelfMasked();
+  arduboy.setFrameRate(60);
+  loadSetEEPROM();
+}
+
+void loop() {
+  if (!(arduboy.nextFrame())) return;
+  if (gameState < STATE_GAME_NEXT_LEVEL && arduboy.everyXFrames(10))sparkleFrames = (++sparkleFrames) % 5;
+  arduboy.pollButtons();
+  arduboy.clear();
+  ((FunctionPointer) pgm_read_word (&mainGameLoop[gameState]))();
+  arduboy.display();
+}
+```
+
+After:
+
+Make sure you notice the functions have been renamed to `start` and `update`.
+
+```c++
+void start()
+{
+  arduboy.boot();
+  // we MUST set aside 1024 of RAM to allow us to easily
+  // persist the entire EEPROM to disk correctly
+  EEPROM.boot();
+  // does nothing currently, we're really always 60 FPS
+  // but perhaps we can make it work with 15 or 30 in the future
+  arduboy.setFrameRate(60);
+  arduboy.audio.begin();
+  loadSetEEPROM();
+}
+
+void update() {
+  if (stillBooting()) {
+    return;
+  }
+
+  // set our "black and white" pallette
+  PALETTE[0] = 0x000000;
+  PALETTE[1] = 0xffff99;
+
+  if (!(arduboy.nextFrame())) return;
+  if (gameState < STATE_GAME_NEXT_LEVEL && arduboy.everyXFrames(10))sparkleFrames = (++sparkleFrames) % 5;
+  arduboy.pollButtons();
+  arduboy.clear();
+  // this can be simplified since we have no PROGMEM on WASM-4
+  mainGameLoop[gameState]();
+  arduboy.display();
+}
+```
+
+Update is only called when the next frame is needed so essentially `nextFrame()` is almost a NOP, but it still does useful things with regard to frame counting, etc. so it's best to leave it.
