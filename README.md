@@ -13,6 +13,10 @@ At a very high level:
 
 <img src="https://aws1.discourse-cdn.com/standard14/uploads/arduboy/original/3X/6/1/6187b9adbd70ef1658b8162b59b07a8c2b3d3e4d.png" width="600" />
 
+To play it online:
+
+<https://ajoshguy.itch.io/mystic-balloons-w4>
+
 ### TODO
 
 - [ ] Restore sound in `Arduboy2Beep.cpp`
